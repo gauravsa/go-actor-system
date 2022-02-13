@@ -27,7 +27,7 @@ func (a *Actor) AddTask(task entities.Task) error {
 	return nil
 }
 
-func (a *Actor) Start() {
+func (a *Actor) start() {
 	defer a.wg.Done()
 	a.wg.Add(1)
 	log.Debug("starting actor :%d", a.id)
@@ -50,7 +50,7 @@ func CreateActor(wg *sync.WaitGroup, id int, tracker *tracker.Tracker) *Actor {
 		tasks: make(chan entities.Task, queue_len),
 		tracker: tracker,
 	}
-	go actor.Start()
+	go actor.start()
 	return actor
 }
 

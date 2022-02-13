@@ -53,7 +53,7 @@ func(system *ActorSystem) loadBalance() {
 			system.decreaseActors(1)
 		}
 
-		time.Sleep(10*time.Millisecond)
+		time.Sleep(100*time.Millisecond)
 	}
 }
 

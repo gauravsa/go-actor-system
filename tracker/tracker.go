@@ -34,7 +34,9 @@ type Tracker struct {
 	sysname string
 	tracker chan Track
 	metrics map[TrackScope]map[TrackMetric]int
+	lastmetric map[TrackScope]map[TrackMetric]int
 	mutex *sync.RWMutex
+	plotter *Plotter
 }
 
 func (m *Tracker) collectMetric() {
@@ -46,6 +48,7 @@ func (m *Tracker) collectMetric() {
 		m.metrics[track.Scope][track.Metric] += track.Val
 		m.mutex.Unlock()
 	}
+	m.plotter.Save()
 	m.printMetric()
 	m.close_sig <- true
 }
@@ -69,6 +72,27 @@ func (m *Tracker) foreverPrintMetric() {
 func (m *Tracker) printMetric() {
 	m.mutex.RLock()
 	log.Debug("system: %s metrics :%+v", m.sysname, m.metrics)
+	line := Line{
+		Time: time.Now().Unix(),
+		Metrics: map[TrackMetric]int{},
+	}
+	for scope, metrics := range m.metrics {
+
+		for metric, value := range metrics {
+			mvalue := value
+			if metric != ActiveActor {
+				mvalue -= m.lastmetric[scope][metric]
+			}
+			line.Metrics[metric] = mvalue
+
+			if m.lastmetric[scope] == nil {
+				m.lastmetric[scope] = map[TrackMetric]int{}
+			}
+			m.lastmetric[scope][metric] = value
+		}
+	}
+	m.plotter.AddMetric(line)
+
 	m.mutex.RUnlock()
 }
 
@@ -78,7 +102,9 @@ func CreateTracker(sysname string) *Tracker {
 		sysname: sysname,
 		tracker: make(chan Track, queue_size),
 		metrics: map[TrackScope]map[TrackMetric]int{},
+		lastmetric: map[TrackScope]map[TrackMetric]int{},
 		mutex: &sync.RWMutex{},
+		plotter: GetPlotter(),
 	}
 	go tracker.collectMetric()
 	go tracker.foreverPrintMetric()

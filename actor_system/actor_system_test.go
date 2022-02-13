@@ -10,7 +10,7 @@ import (
 
 func TestIOSimulationSystem(t *testing.T) {
 	ioSimSystem := CreateActorSystem("io_sim", &config.ActorSystemConfig{
-		Minactor: 10,
+		Minactor: 1,
 		Maxactor: 100,
 		AutoScale: config.AutoScale{
 			UpscaleQueueSize:   100,
@@ -18,7 +18,7 @@ func TestIOSimulationSystem(t *testing.T) {
 		},
 	})
 
-	for i := 0; i < 1000; i += 1 {
+	for i := 0; i < 100000; i += 1 {
 		ioSimSystem.SubmitTask(CreateNumberPrinterTask(i))
 		<-time.After(2 * time.Millisecond)
 	}
