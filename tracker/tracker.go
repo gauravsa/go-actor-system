@@ -2,6 +2,7 @@ package tracker
 
 import (
 	"github.com/ian-kent/go-log/log"
+	"sync"
 	"time"
 )
 
@@ -30,10 +31,10 @@ type Track struct {
 
 type Tracker struct {
 	close_sig chan bool
-	trackername string
 	sysname string
 	tracker chan Track
 	metrics map[TrackScope]map[TrackMetric]int
+	mutex *sync.RWMutex
 }
 
 func (m *Tracker) collectMetric() {
@@ -41,7 +42,9 @@ func (m *Tracker) collectMetric() {
 		if m.metrics[track.Scope] == nil {
 			m.metrics[track.Scope] = map[TrackMetric]int{}
 		}
+		m.mutex.Lock()
 		m.metrics[track.Scope][track.Metric] += track.Val
+		m.mutex.Unlock()
 	}
 	m.printMetric()
 	m.close_sig <- true
@@ -64,16 +67,18 @@ func (m *Tracker) foreverPrintMetric() {
 }
 
 func (m *Tracker) printMetric() {
+	m.mutex.RLock()
 	log.Debug("system: %s metrics :%+v", m.sysname, m.metrics)
+	m.mutex.RUnlock()
 }
 
-func CreateTracker(trackername, sysname string) *Tracker {
+func CreateTracker(sysname string) *Tracker {
 	tracker := &Tracker{
 		close_sig: make(chan bool),
-		trackername: trackername,
 		sysname: sysname,
 		tracker: make(chan Track, queue_size),
 		metrics: map[TrackScope]map[TrackMetric]int{},
+		mutex: &sync.RWMutex{},
 	}
 	go tracker.collectMetric()
 	go tracker.foreverPrintMetric()

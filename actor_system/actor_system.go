@@ -122,7 +122,7 @@ func (system *ActorSystem) Shutdown(wg *sync.WaitGroup) {
 // CreateActorSystem invokes actors and returns close_sig chan to close
 func CreateActorSystem(name string, config *config.ActorSystemConfig) *ActorSystem{
 	wg := &sync.WaitGroup{}
-	systracker := tracker.CreateTracker("systracker", name)
+	systracker := tracker.CreateTracker( name)
 	actors := createAndStartActors(0, config.Minactor, systracker, wg)
 
 	systracker.GetTrackerChan() <- tracker.CreateTrack(tracker.ActorSystem, tracker.ActiveActor, config.Minactor)

@@ -19,7 +19,11 @@ func CreateNumberPrinterTask(i int) entities.Task{
 }
 
 func (t *SimIOTask) Execute() {
-	duration := time.Duration(rand.Intn(100)) * time.Millisecond
+	x := 0
+	if time.Now().Second() > 30 {
+		x = 100
+	}
+	duration := time.Duration(x+rand.Intn(75)) * time.Millisecond
 	<- time.After(duration)
 
 }

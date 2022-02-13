@@ -19,11 +19,12 @@ func TestIOSimulationSystem(t *testing.T) {
 		},
 	})
 
-	for i := 0; i < 100000; i += 1 {
+	for i := 0; i < 1000; i += 1 {
 		ioSimSystem.SubmitTask(task.CreateNumberPrinterTask(i))
 		<-time.After(2 * time.Millisecond)
 	}
 	shutdown([]*ActorSystem{ioSimSystem})
+
 }
 
 func shutdown(systems []*ActorSystem) {

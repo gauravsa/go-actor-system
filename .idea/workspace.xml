@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96b75c66-e5a8-4ae1-8bd7-bbfd05ecb64c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/actor_system/actor_system_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor_system/actor_system.go" beforeDir="false" afterPath="$PROJECT_DIR$/actor_system/actor_system.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor_system/actor_system_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/actor_system/actor_system_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task/io_sim_task.go" beforeDir="false" afterPath="$PROJECT_DIR$/task/io_sim_task.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tracker/tracker.go" beforeDir="false" afterPath="$PROJECT_DIR$/tracker/tracker.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,16 +72,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/main.go</url>
-          <line>12</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
