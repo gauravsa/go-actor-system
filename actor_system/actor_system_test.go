@@ -1,34 +1,32 @@
-package main
+package actor_system
 
 import (
 	"github.com/ian-kent/go-log/log"
-	"go-actor-system/actor_system"
 	"go-actor-system/config"
 	"go-actor-system/task"
 	"sync"
+	"testing"
 	"time"
 )
 
-func main() {
-	ioSimSystem := actor_system.CreateActorSystem("io_sim", &config.ActorSystemConfig{
-		Minactor:  10,
-		Maxactor:  100,
+func TestIOSimulationSystem(t *testing.T) {
+	ioSimSystem := CreateActorSystem("io_sim", &config.ActorSystemConfig{
+		Minactor: 10,
+		Maxactor: 100,
 		AutoScale: config.AutoScale{
 			UpscaleQueueSize:   100,
 			DownscaleQueueSize: 10,
 		},
 	})
 
-	for i:=0; i<100000; i += 1 {
+	for i := 0; i < 100000; i += 1 {
 		ioSimSystem.SubmitTask(task.CreateNumberPrinterTask(i))
-		<- time.After(2 * time.Millisecond)
+		<-time.After(2 * time.Millisecond)
 	}
-	shutdown([]*actor_system.ActorSystem{ioSimSystem})
+	shutdown([]*ActorSystem{ioSimSystem})
 }
 
-
-
-func shutdown(systems []*actor_system.ActorSystem) {
+func shutdown(systems []*ActorSystem) {
 
 	wg := &sync.WaitGroup{}
 	wg.Add(len(systems))

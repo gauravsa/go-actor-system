@@ -2,8 +2,8 @@ package config
 
 
 type ActorSystemConfig struct {
-	Minactor int `env:"minactor" default:10`
-	Maxactor int `env:"maxactor" default:100`
+	Minactor int `env:"minactor" default:"10"`
+	Maxactor int `env:"maxactor" default:"100"`
 	AutoScale
 }
 
