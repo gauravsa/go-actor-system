@@ -1,4 +1,4 @@
-package task
+package actor_system
 
 import (
 	"go-actor-system/entities"
