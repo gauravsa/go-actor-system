@@ -2,17 +2,17 @@ package actor_system
 
 import (
 	"github.com/ian-kent/go-log/log"
-	"go-actor-system/config"
+	"go-actor-system/actor"
 	"sync"
 	"testing"
 	"time"
 )
 
 func TestIOSimulationSystem(t *testing.T) {
-	ioSimSystem := CreateActorSystem("io_sim", &config.ActorSystemConfig{
-		Minactor: 10,
-		Maxactor: 100,
-		AutoScale: config.AutoScale{
+	ioSimSystem := CreateActorSystem("io_sim", &actor.Config{
+		MinActor: 10,
+		MaxActor: 100,
+		AutoScale: actor.AutoScale{
 			UpscaleQueueSize:   100,
 			DownscaleQueueSize: 10,
 		},
