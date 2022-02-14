@@ -19,10 +19,6 @@ type TaskActor struct {
 	tracker *tracker.Tracker
 }
 
-func (a *TaskActor) QueueSize() int {
-	return len(a.tasks)
-}
-
 func (a *TaskActor) AddTask(task entities.Task) error {
 	if len(a.tasks) >= taskQueueSize {
 		return errors.New("filled queue")

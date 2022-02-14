@@ -5,15 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96b75c66-e5a8-4ae1-8bd7-bbfd05ecb64c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/actor/assigner_actor.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/actor/auto_scaler.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/actor/task_pool.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/entities/actor.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actor/actor.go" beforeDir="false" afterPath="$PROJECT_DIR$/actor/task_actor.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actor_system/actor_system.go" beforeDir="false" afterPath="$PROJECT_DIR$/actor_system/actor_system.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actor_system/actor_system_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/actor_system/actor_system_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/actor_system_config.go" beforeDir="false" afterPath="$PROJECT_DIR$/actor/scalar_config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actor/task_actor.go" beforeDir="false" afterPath="$PROJECT_DIR$/actor/task_actor.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entities/actor.go" beforeDir="false" afterPath="$PROJECT_DIR$/entities/actor.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,17 +93,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/actor/auto_scaler.go</url>
-          <line>52</line>
+          <line>53</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/actor/auto_scaler.go</url>
-          <line>53</line>
+          <line>54</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/actor/auto_scaler.go</url>
-          <line>36</line>
+          <line>37</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>

@@ -3,7 +3,7 @@ package entities
 
 type Actor interface {
 	AddTask(task Task) error
-	QueueSize() int
+	//QueueSize() int
 	Start()
 	Stop()
 }
